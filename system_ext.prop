@@ -4,7 +4,9 @@ audio.offload.buffer.size.kb=32
 audio.offload.gapless.enabled=true
 
 # Camera
-vendor.camera.aux.packagelist=org.codeaurora.snapcam,org.lineageos.aperture,org.lineageos.aperture.dev
+# LG Camera needs every camera ID (its logical cameras come after the physical ones).
+# Keep the value under 92 chars: non-ro property values are limited to that length.
+vendor.camera.aux.packagelist=org.codeaurora.snapcam,org.lineageos.aperture,org.lineageos.aperture.dev,com.lge.camera
 
 # CNE
 persist.vendor.cne.feature=1
