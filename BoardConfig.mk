@@ -1,5 +1,5 @@
 #
-# SPDX-FileCopyrightText: The LineageOS Project
+# SPDX-FileCopyrightText: Paranoid Android
 # SPDX-License-Identifier: Apache-2.0
 #
 
@@ -156,9 +156,6 @@ TARGET_COPY_OUT_ODM := odm
 TARGET_COPY_OUT_PRODUCT := product
 TARGET_COPY_OUT_SYSTEM_EXT := system_ext
 TARGET_COPY_OUT_VENDOR := vendor
-
-# Partitions - reserved size
-include vendor/lineage/config/BoardConfigReservedSize.mk
 
 # Platform
 BOARD_USES_QCOM_HARDWARE := true
