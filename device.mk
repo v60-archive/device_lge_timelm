@@ -1,5 +1,5 @@
 #
-# SPDX-FileCopyrightText: The LineageOS Project
+# SPDX-FileCopyrightText: Paranoid Android
 # SPDX-License-Identifier: Apache-2.0
 #
 
@@ -22,10 +22,6 @@ PRODUCT_PACKAGES += \
     ApertureOverlay \
     CarrierConfigOverlay \
     FrameworksResOverlay \
-    LineageSDKOverlay \
-    LineageSettingsOverlay \
-    LineageSettingsProviderOverlay \
-    NcmTetheringOverlay \
     TimelmTelephonyOverlay \
     LGEAISound \
     SettingsOverlay \
@@ -42,8 +38,25 @@ PRODUCT_SOONG_NAMESPACES += \
 # Enable project quotas and casefolding for emulated storage without sdcardfs
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
-# Add common definitions for Qualcomm
-$(call inherit-product, hardware/qcom-caf/common/common.mk)
+# QTI
+TARGET_COMMON_QTI_COMPONENTS := \
+    adreno \
+    alarm \
+    audio \
+    av \
+    bt \
+    charging \
+    display \
+    gps \
+    init \
+    media \
+    nfc \
+    overlay \
+    perf \
+    telephony \
+    usb \
+    wfd \
+    wlan
 
 # A/B
 AB_OTA_POSTINSTALL_CONFIG += \
@@ -143,13 +156,6 @@ PRODUCT_PACKAGES += \
 # Fingerprint
 $(call inherit-product, hardware/lge/fingerprint/udfps.mk)
 
-# FM packages
-PRODUCT_PACKAGES += \
-    FM2
-
-$(call soong_config_set,libfmjni,vendor,qcom)
-$(call soong_config_set_bool,libfmjni,no_fm_firmware,true)
-
 # GPS
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/gps/,$(TARGET_COPY_OUT_VENDOR)/etc)
@@ -157,10 +163,6 @@ PRODUCT_COPY_FILES += \
 # Health
 PRODUCT_PACKAGES += \
     android.hardware.health-service.qti
-
-# HotwordEnrollement app permissions
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/privapp-permissions-hotword.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-hotword.xml
 
 # Init
 $(call soong_config_set,libinit,vendor_init_lib,//$(LOCAL_PATH):libinit_lge_kona)
@@ -179,7 +181,7 @@ PRODUCT_PACKAGES += \
 
 # Light
 PRODUCT_PACKAGES += \
-    android.hardware.light-service.lineage
+    android.hardware.light-service.lge
 
 # Lineage Health
 PRODUCT_PACKAGES += \
@@ -203,7 +205,7 @@ $(call soong_config_set_bool,stagefright,target_disable_thumbnail_block_model,tr
 # NFC
 PRODUCT_PACKAGES += \
     android.hardware.nfc@1.2-service \
-    com.android.nfc_extras \
+    NfcNci \
     Tag
 
 PRODUCT_COPY_FILES += \
@@ -393,7 +395,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     Iwlan \
     QualifiedNetworksService
-    
+
 # WiFi firmware symlinks
 PRODUCT_PACKAGES += \
     qca6390_firmware_symlink \
