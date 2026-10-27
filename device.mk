@@ -38,6 +38,9 @@ PRODUCT_SOONG_NAMESPACES += \
 # Enable project quotas and casefolding for emulated storage without sdcardfs
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
+# Target Platform
+TARGET_BOARD_PLATFORM := kona
+
 # QTI
 TARGET_COMMON_QTI_COMPONENTS := \
     adreno \
