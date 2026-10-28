@@ -38,6 +38,9 @@ PRODUCT_SOONG_NAMESPACES += \
 # Enable project quotas and casefolding for emulated storage without sdcardfs
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
+# Target Platform
+TARGET_BOARD_PLATFORM := kona
+
 # QTI
 TARGET_COMMON_QTI_COMPONENTS := \
     adreno \
@@ -79,41 +82,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fs_config_files
 
-# Audio
-PRODUCT_PACKAGES += \
-    android.hardware.audio.effect@6.0-impl \
-    android.hardware.audio.service \
-    android.hardware.audio@6.0-impl \
-    android.hardware.bluetooth.audio-impl \
-    android.hardware.soundtrigger@2.3-impl \
-    audio.bluetooth.default \
-    audio.primary.default \
-    audio.r_submix.default \
-    audio.usbv2.default \
-    libbatterylistener \
-    libbundlewrapper \
-    libcirrusspkrprot \
-    libcomprcapture \
-    libdownmix \
-    libdynproc \
-    libeffectproxy \
-    libexthwplugin \
-    libhdmiedid \
-    libhfp \
-    libldnhncr \
-    libqcompostprocbundle \
-    libqcomvisualizer \
-    libqcomvoiceprocessing \
-    libreverbwrapper \
-    libsndmonitor \
-    libspkrprot \
-    libvisualizer \
-    libvolumelistener \
-    sound_trigger.primary.kona \
-    tinymix
-
-AUDIO_HAL_DIR := hardware/qcom-caf/sm8250/audio
-
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/audio/,$(TARGET_COPY_OUT_VENDOR)/etc) \
     $(AUDIO_HAL_DIR)/configs/kona/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
@@ -141,14 +109,6 @@ PRODUCT_PACKAGES += \
     QuadDACPanel \
     vendor.lge.hardware.audio.dac.control@2.0-service.proprietary
 
-# Display
-PRODUCT_PACKAGES += \
-    android.hardware.graphics.mapper@3.0-impl-qti-display \
-    android.hardware.graphics.mapper@4.0-impl-qti-display \
-    vendor.qti.hardware.display.allocator-service \
-    vendor.qti.hardware.display.composer-service \
-    vendor.qti.hardware.memtrack-service
-
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm-service.clearkey
@@ -159,10 +119,6 @@ $(call inherit-product, hardware/lge/fingerprint/udfps.mk)
 # GPS
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(LOCAL_PATH)/configs/gps/,$(TARGET_COPY_OUT_VENDOR)/etc)
-
-# Health
-PRODUCT_PACKAGES += \
-    android.hardware.health-service.qti
 
 # Init
 $(call soong_config_set,libinit,vendor_init_lib,//$(LOCAL_PATH):libinit_lge_kona)
@@ -188,13 +144,6 @@ PRODUCT_PACKAGES += \
     vendor.lineage.health-service.default
 
 $(call soong_config_set,lineage_health,charging_control_charging_path,/sys/class/power_supply/battery/battery_charging_enabled)
-
-# Livedisplay
-PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay-service.lge
-
-$(call soong_config_set,livedisplay_lge,enable_se,true)
-$(call soong_config_set,livedisplay_lge,enable_ce,true)
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -274,11 +223,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/com.nxp.mifare.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.nxp.mifare.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml
 
-# Power
-PRODUCT_PACKAGES += \
-    android.hardware.power-service.lineage-libperfmgr \
-    libqti-perfd-client
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 
@@ -289,34 +233,19 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/lineage/interfaces/power-libperfmgr \
     hardware/qcom-caf/common/libqti-perfd-client
 
-# Recovery
-$(call soong_config_set,lineage_recovery,bootloader_message_offset,128)
-
 # Radio
 PRODUCT_PACKAGES += \
     android.hardware.radio-service.lge
-
-# Rootdir
-PRODUCT_PACKAGES += \
-    init.mdm.sh \
-    init.qcom.post_boot.sh \
-    init.qcom.sh \
-    init.qcom.usb.sh \
-    init.qti.dcvs.sh \
 
 PRODUCT_PACKAGES += \
     fstab.timelm \
     fstab.timelm.ramdisk \
     init.lge.rc \
     init.lge.vendor.rc \
-    init.qcom.power.rc \
-    init.qcom.rc \
-    init.qcom.usb.rc \
     init.recovery.timelm.rc \
     init.target.rc \
     init.timelm.rc \
     init.vendor.sensors.rc \
-    ueventd.qcom.rc
 
 # Sensors
 PRODUCT_PACKAGES += \
@@ -325,25 +254,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
-
-# Telephony
-PRODUCT_PACKAGES += \
-    extphonelib \
-    extphonelib-product \
-    extphonelib.xml \
-    extphonelib_product.xml \
-    ims-ext-common \
-    ims_ext_common.xml \
-    qti-telephony-hidl-wrapper \
-    qti_telephony_hidl_wrapper.xml \
-    qti-telephony-hidl-wrapper-prd \
-    qti_telephony_hidl_wrapper_prd.xml \
-    qti-telephony-utils \
-    qti_telephony_utils.xml \
-    telephony-ext
-
-PRODUCT_BOOT_JARS += \
-    telephony-ext
 
 # Thermal
 PRODUCT_PACKAGES += \
@@ -364,10 +274,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
-
-# USB
-PRODUCT_PACKAGES += \
-    android.hardware.usb-service.qti
 
 # Vendor service manager
 PRODUCT_PACKAGES += \
@@ -404,3 +310,4 @@ PRODUCT_PACKAGES += \
 
 # Inherit the proprietary files
 $(call inherit-product, vendor/lge/timelm/timelm-vendor.mk)
+
