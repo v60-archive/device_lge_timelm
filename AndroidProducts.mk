@@ -4,4 +4,10 @@
 #
 
 PRODUCT_MAKEFILES += \
-    $(LOCAL_DIR)/lineage_timelm.mk
+    $(LOCAL_DIR)/twrp_timelm.mk
+
+
+COMMON_LUNCH_CHOICES := \
+    twrp_timelm-user \
+    twrp_timelm-userdebug \
+    twrp_timelm-eng

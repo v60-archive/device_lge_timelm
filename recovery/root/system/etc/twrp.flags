@@ -1,0 +1,12 @@
+# mount point   fstype  device                                      device2                flags
+/boot           emmc    /dev/block/bootdevice/by-name/boot                                 flags=display="Boot";backup=1;flashimg=1;slotselect
+/dtbo           emmc    /dev/block/bootdevice/by-name/dtbo                                 flags=display="DTBO";backup=1;flashimg=1;slotselect
+/recovery       emmc    /dev/block/bootdevice/by-name/recovery                             flags=display="Recovery";backup=1;flashimg=1;slotselect
+/vbmeta         emmc    /dev/block/bootdevice/by-name/vbmeta                               flags=display="VBMeta";backup=1;flashimg=1;slotselect
+/vbmeta_system  emmc    /dev/block/bootdevice/by-name/vbmeta_system                        flags=display="VBMeta System";backup=1;flashimg=1;slotselect
+/metadata       ext4    /dev/block/by-name/metadata                                        flags=display="Metadata";backup=1;wipeingui
+/persist        ext4    /dev/block/bootdevice/by-name/persist                              flags=display="Persist";backup=1
+/persist_image  emmc    /dev/block/bootdevice/by-name/persist                              flags=display="Persist Image";backup=1;flashimg=1
+/firmware       vfat    /dev/block/bootdevice/by-name/modem                                flags=display="Firmware";mounttodecrypt;slotselect
+/external_sd    vfat    /dev/block/mmcblk0p1                        /dev/block/mmcblk0     flags=display="MicroSD";storage;wipeingui;removable
+/usb_otg        vfat    /dev/block/sdg1                             /dev/block/sdg         flags=display="USB-OTG";storage;wipeingui;removable
