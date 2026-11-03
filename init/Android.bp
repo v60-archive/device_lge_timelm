@@ -32,24 +32,6 @@ sh_binary {
 }
 
 sh_binary {
-        name: "init.qcom.sh",
-        src: "init.qcom.sh",
-        vendor: true,
-}
-
-sh_binary {
-        name: "init.qcom.post_boot.sh",
-        src: "init.qcom.post_boot.sh",
-        vendor: true,
-}
-
-sh_binary {
-	name: "init.qcom.usb.sh",
-	src: "init.qcom.usb.sh",
-	vendor: true,
-}
-
-sh_binary {
         name: "init.qti.dcvs.sh",
         src: "init.qti.dcvs.sh",
         vendor: true,
@@ -67,27 +49,6 @@ prebuilt_etc {
         name: "init.lge.vendor.rc",
         src: "init.lge.vendor.rc",
         sub_dir: "init",
-        vendor: true,
-}
-
-prebuilt_etc {
-        name: "init.qcom.rc",
-        src: "init.qcom.rc",
-        sub_dir: "init/hw",
-        vendor: true,
-}
-
-prebuilt_etc {
-        name: "init.qcom.usb.rc",
-        src: "init.qcom.usb.rc",
-        sub_dir: "init/hw",
-        vendor: true,
-}
-
-prebuilt_etc {
-        name: "init.qcom.power.rc",
-        src: "init.qcom.power.rc",
-        sub_dir: "init/hw",
         vendor: true,
 }
 
@@ -120,8 +81,7 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
-	name: "ueventd.qcom.rc",
-	filename: "ueventd.rc",
-	src: "ueventd.qcom.rc",
+	name: "ueventd.lge.rc",
+	src: "ueventd.lge.rc",
 	vendor: true,
 }
