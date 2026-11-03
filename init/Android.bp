@@ -24,19 +24,6 @@ prebuilt_etc {
 	ramdisk_available: true,
 }
 
-// Init scripts
-sh_binary {
-        name: "init.mdm.sh",
-        src: "init.mdm.sh",
-        vendor: true,
-}
-
-sh_binary {
-        name: "init.qti.dcvs.sh",
-        src: "init.qti.dcvs.sh",
-        vendor: true,
-}
-
 // Init configuration files
 prebuilt_etc {
 	name: "init.lge.rc",
