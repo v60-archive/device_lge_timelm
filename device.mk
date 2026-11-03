@@ -239,6 +239,7 @@ PRODUCT_PACKAGES += \
     init.target.rc \
     init.timelm.rc \
     init.vendor.sensors.rc \
+    ueventd.lge.rc
 
 # Sensors
 PRODUCT_PACKAGES += \

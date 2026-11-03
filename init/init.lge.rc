@@ -29,6 +29,11 @@
 on early-init
     exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules audio_tfa9878
 
+on init
+    # ZRAM setup
+    write /sys/block/zram0/comp_algorithm lz4
+    write /proc/sys/vm/page-cluster 0
+
 on post-fs-data
     mkdir /mnt/vendor/persist-lg/egis 0700 system system
     mkdir /data/vendor/fingerprintdump 0775 system system
@@ -58,7 +63,22 @@ on post-fs-data
     chmod 664 /sys/devices/virtual/input/lge_sar_rf/check_far
     chmod 664 /sys/devices/virtual/input/lge_sar_rf/check_mid
 
+    # LGE_WIFI, Addiotional Bring-up
+    mkdir /mnt/vendor/persist-lg/wifi 0770 wifi system
+    chown wifi system /mnt/vendor/persist-lg/wifi/WCNSS_qcom_cfg.ini
+    chmod 770 /mnt/vendor/persist-lg/wifi/WCNSS_qcom_cfg.ini
+    chown wifi system /mnt/vendor/persist-lg/wifi/wlan_mac.bin
+    chmod 770 /mnt/vendor/persist-lg/wifi/wlan_mac.bin
+
 on boot
+    # LGE Setting for Hasting Logs
+    copy /vendor/etc/wifi/Diag.cfg /data/vendor/wifi/Diag.cfg
+    chown wifi system /data/vendor/wifi/Diag.cfg
+    chmod 774 /data/vendor/wifi/Diag.cfg
+    copy /vendor/etc/wifi/mask_list.txt /data/vendor/wifi/mask_list.txt
+    chown wifi system /data/vendor/wifi/mask_list.txt
+    chmod 774 /data/vendor/wifi/mask_list.txt
+
 	# Display features
 	chown system system /sys/class/panel/panel-0/drs/freeze_state_hal
 	chmod 664 /sys/class/panel/panel-0/drs/freeze_state_hal
@@ -334,6 +354,11 @@ on property:vendor.lge.nfc_vendor=sony
 
 on property:ro.vendor.lge.minios.bootstart=1
     stop vendor.lge-biometrics-fingerprint-hal-2-2
+
+on property:sys.boot_completed=1
+    swapon_all /vendor/etc/fstab.timelm
+    # Let the camera daemon use every core (480 fps HFR recording needs it)
+    write /dev/cpuset/camera-daemon/cpus 0-7
 
 # LGE gbmd
 service vendor.gbmd /vendor/bin/gbmd
