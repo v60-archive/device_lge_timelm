@@ -69,7 +69,8 @@ DEVICE_MATRIX_FILE += hardware/qcom-caf/common/compatibility_matrix.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     hardware/lge/vintf/device_framework_matrix.xml \
-    hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml
+    hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
+    $(DEVICE_PATH)/duck-rkp/compatibility_matrix.xml
 
 # Kernel
 BOARD_BOOT_HEADER_VERSION := 2
@@ -165,6 +166,9 @@ TARGET_COPY_OUT_VENDOR := vendor
 # Platform
 BOARD_USES_QCOM_HARDWARE := true
 TARGET_BOARD_PLATFORM := kona
+
+# SEPolicy
+BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 
 # Properties
 TARGET_ODM_PROP += $(DEVICE_PATH)/odm.prop
