@@ -33,8 +33,8 @@ PRODUCT_ENFORCE_RRO_TARGETS := *
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
-    hardware/lge
-
+    hardware/lge \
+    hardware/qcom/wlan/qcwcn/wpa_supplicant_8_lib
 # Enable project quotas and casefolding for emulated storage without sdcardfs
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 

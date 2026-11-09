@@ -5,6 +5,8 @@
 
 DEVICE_PATH := device/lge/timelm
 
+BUILD_BROKEN_DUP_RULES := true
+
 # A/B
 AB_OTA_PARTITIONS += \
     boot \
@@ -63,11 +65,9 @@ NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/config.fs
 
 # HIDL
-DEVICE_MATRIX_FILE += hardware/qcom-caf/common/compatibility_matrix.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    hardware/lge/vintf/device_framework_matrix.xml \
-    hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml
+    hardware/lge/vintf/device_framework_matrix.xml
 
 # Kernel
 BOARD_BOOT_HEADER_VERSION := 2
