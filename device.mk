@@ -227,7 +227,23 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_PACKAGES += \
     android.hardware.radio-service.lge \
     Ims6_libimscamera_jni_symlink \
-    Ims6_libimsmedia_jni_symlink
+    Ims6_libimsmedia_jni_symlink \
+    libbinder_ims \
+    libgui_ims \
+    libhidlbase_ims \
+    libhidltransport_ims \
+    libhwbinder_ims \
+    libmedia_ims \
+    libui_ims \
+    libutils_ims \
+    libbinder_ims_priv-app \
+    libgui_ims_priv-app \
+    libhidlbase_ims_priv-app \
+    libhidltransport_ims_priv-app \
+    libhwbinder_ims_priv-app \
+    libmedia_ims_priv-app \
+    libui_ims_priv-app \
+    libutils_ims_priv-app
 
 PRODUCT_PACKAGES += \
     fstab.timelm \

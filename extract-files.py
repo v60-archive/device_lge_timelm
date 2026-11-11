@@ -18,6 +18,7 @@ from extract_utils.main import (
 )
 
 namespace_imports = [
+    'device/lge/timelm',
     'hardware/lge',
     'vendor/qcom/common/vendor/dsprpcd',
     'vendor/qcom/common/vendor/display/4.19',
@@ -172,6 +173,31 @@ blob_fixups: blob_fixups_user_type = {
         blob_fixup()
             .remove_needed('libfpsph.so')
             .add_needed('libets_teeclient_v2_shim.so')
+    ),
+    'system_ext/lib64/libims.lge.so': (
+        blob_fixup()
+            .add_needed('libbinder_ims.so')
+            .add_needed('libutils_ims.so')
+    ),
+    'system_ext/lib64/libimscamerajni.lge.so': (
+        blob_fixup()
+            .add_needed('libbinder_ims.so')
+            .add_needed('libutils_ims.so')
+            .add_needed('libgui_ims.so')
+    ),
+    'system_ext/lib64/libimsmmpf.lge.so': (
+        blob_fixup()
+            .add_needed('libhidlbase_ims.so')
+            .add_needed('libhidltransport_ims.so')
+            .add_needed('libmedia_ims.so')
+            .add_needed('libui_ims.so')
+            .add_needed('libgui_ims.so')
+    ),
+    'system_ext/lib64/libimswms.lge.so': (
+        blob_fixup()
+            .add_needed('libutils_ims.so')
+            .add_needed('libhidlbase_ims.so')
+            .add_needed('libhidltransport_ims.so')
     ),
 }  # fmt: skip
 
