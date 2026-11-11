@@ -341,11 +341,15 @@ on boot
 
 	# Fingerprint
 	chown system system /dev/esfp0
-    chmod 0644 /dev/esfp0
+	chmod 0644 /dev/esfp0
 
 	# IRQ
-    write /sys/kernel/debug/clk/debug_suspend 1
-    write /sys/module/msm_show_resume_irq/parameters/debug_mask 1
+	write /sys/kernel/debug/clk/debug_suspend 1
+	write /sys/module/msm_show_resume_irq/parameters/debug_mask 1
+	
+	# Vibrator
+	chown system system /dev/tspdrv
+	chmod 0600 /dev/tspdrv
 
 on property:vendor.lge.nfc_vendor=sony
     stop vendor.nfc_hal_service
