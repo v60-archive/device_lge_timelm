@@ -225,7 +225,9 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Radio
 PRODUCT_PACKAGES += \
-    android.hardware.radio-service.lge
+    android.hardware.radio-service.lge \
+    Ims6_libimscamera_jni_symlink \
+    Ims6_libimsmedia_jni_symlink
 
 PRODUCT_PACKAGES += \
     fstab.timelm \
