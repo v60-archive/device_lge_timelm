@@ -12,6 +12,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <sys/utsname.h>
 
 #include <android-base/file.h>
 #include <android-base/logging.h>
@@ -88,6 +89,22 @@ void init_target_properties()
     property_override("ro.product.product.model", model);
     property_override("ro.product.system.model", model);
     property_override("ro.product.vendor.model", model);
+
+    // Dynamically override kernel BPF version if running kernel is older than 5.10.239
+    struct utsname uts;
+    if (uname(&uts) == 0) {
+        unsigned int major = 0, minor = 0, patch = 0;
+        if (sscanf(uts.release, "%u.%u.%u", &major, &minor, &patch) >= 2) {
+            bool olderThanOverride = (major < 5) ||
+                                     (major == 5 && minor < 10) ||
+                                     (major == 5 && minor == 10 && patch < 239);
+            if (olderThanOverride) {
+                property_override("ro.bpf.kver_override", "5.10.239");
+            } else {
+                property_override("ro.bpf.kver_override", "");
+            }
+        }
+    }
 }
 
 void vendor_load_properties() {
