@@ -91,7 +91,7 @@ BOARD_RAMDISK_OFFSET := 0x01000000
 BOARD_DTB_OFFSET := 0x01f00000
 BOARD_KERNEL_IMAGE_NAME := Image.gz
 TARGET_KERNEL_CLANG_VERSION := r563880c
-TARGET_KERNEL_CONFIG := vendor/kona-perf_defconfig vendor/timelm.config
+TARGET_KERNEL_CONFIG := timelm_defconfig
 TARGET_KERNEL_SOURCE := kernel/lge/sm8250
 BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_MKBOOTIMG_ARGS += --base $(BOARD_KERNEL_BASE) --pagesize $(BOARD_KERNEL_PAGESIZE) --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET) --kernel_offset $(BOARD_KERNEL_OFFSET) --dtb_offset $(BOARD_DTB_OFFSET) --header_version $(BOARD_BOOT_HEADER_VERSION)
@@ -134,6 +134,9 @@ TARGET_MODULE_ALIASES += \
 # Kernel modules - WLAN
 TARGET_MODULE_ALIASES += \
     wlan.ko:qca_cld3_qca6390.ko
+
+# Media
+TARGET_MEDIA_COMPONENT_VARIANT := media-legacy
 
 # Partitions
 BOARD_USES_METADATA_PARTITION := true
