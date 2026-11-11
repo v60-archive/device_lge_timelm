@@ -651,4 +651,9 @@
     <bool name="config_device_volte_available">true</bool>
     
     <bool name="config_device_vt_available">true</bool>
+
+    <!-- Biometric sensor: ID 0, Modality Fingerprint (2), Strength Strong (15) -->
+    <string-array name="config_biometric_sensors" translatable="false">
+        <item>0:2:15</item>
+    </string-array>
 </resources>
