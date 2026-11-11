@@ -12,9 +12,6 @@ vendor.audio.dolby.ds2.hardbypass=false
 audio.offload.video=false
 audio.offload.min.duration.secs=30
 persist.vendor.audio.spkr.cal.duration=0
-persist.vendor.audio.ambisonic.capture=true
-persist.vendor.audio.ambisonic.auto.profile=true
-persist.vendor.audio.apptype.multirec.enabled=true
 persist.vendor.audio.avs.afe_api_version=2
 persist.vendor.audio.fluence.speaker=true
 persist.vendor.audio.fluence.tmic.enabled=false
@@ -27,7 +24,6 @@ persist.vendor.audio.spv3.enable=true
 ro.config.media_vol_default=14
 ro.config.media_vol_steps=25
 persist.vendor.lge.3rd.speaker.prot.enable=on
-ro.vendor.audio.sdk.fluencetype=nxp
 ro.vendor.audio.sdk.ssr=false
 use.voice.path.for.pcm.voip=true
 vendor.audio.adm.buffering.ms=2
@@ -146,10 +142,7 @@ vendor.display.enable_optimize_refresh=1
 vendor.display.enable_posted_start_dyn=1
 vendor.display.enable_camera_smooth=1
 vendor.display.enable_allow_idle_fallback=1
-vendor.display.disable_idle_time_hdr=0
-vendor.display.disable_hw_recovery_dump=1
 vendor.display.disable_offline_rotator=1
-vendor.display.enable_async_powermode=0
 vendor.display.disable_mask_layer_hint=1
 
 # DPM
@@ -188,7 +181,6 @@ debug.sf.high_fps_early_gl_phase_offset_ns=-4000000
 debug.sf.high_fps_late_app_phase_offset_ns=1000000
 debug.sf.latch_unsignaled=1
 persist.sys.sf.color_saturation=1.0
-persist.sys.sf.color_mode=0
 ro.hardware.egl=adreno
 ro.hardware.vulkan=adreno
 ro.opengles.version=196610
@@ -262,7 +254,6 @@ ro.soc.model=SM8250
 # USB
 vendor.usb.diag.func.name=diag
 vendor.usb.dpl.inst.name=dpl
-vendor.usb.qdss.inst.name=qdss
 vendor.usb.rmnet.func.name=gsi
 vendor.usb.rmnet.inst.name=rmnet
 vendor.usb.rndis.func.name=gsi
@@ -271,9 +262,6 @@ vendor.usb.use_gadget_hal=0
 
 # Verity
 ro.apk_verity.mode=2
-
-# Voice
-vendor.voice.path.for.pcm.voip=false
 
 # Volume
 ro.config.vc_call_vol_steps=7
