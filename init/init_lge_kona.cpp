@@ -79,6 +79,8 @@ void init_target_properties()
 
     if(dualSim) {
         property_override("persist.radio.multisim.config", "dsds");
+    } else {
+        property_override("persist.radio.multisim.config", "");
     }
 
     property_override("ro.product.model", model);
