@@ -1,0 +1,46 @@
+//
+// SPDX-FileCopyrightText: The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// Netlink thermal HAL from hardware/qcom-caf/thermal (lineage-23.2, 20a792e).
+// kona is a legacy UM platform, so BoardConfigQcom.mk exports
+// thermal-legacy-um (sysfs polling) and the device cannot opt out; this copy
+// is the netlink HAL for the msm-5.15 kernel. The module has its own name and
+// installs the stock binary name, so the sepolicy_vndr label still applies.
+cc_binary {
+    name: "android.hardware.thermal-service.qti.timelm",
+    stem: "android.hardware.thermal-service.qti",
+    relative_install_path: "hw",
+    init_rc: ["android.hardware.thermal-service.qti.rc"],
+    vintf_fragments: ["android.hardware.thermal-service.qti.xml"],
+    vendor: true,
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+        "android.hardware.thermal-V2-ndk",
+        "libcutils",
+        "libutils",
+        "liblog",
+        "libnl",
+    ],
+    srcs: [
+        "service.cpp",
+        "thermal.cpp",
+        "thermalConfig.cpp",
+        "thermalCommon.cpp",
+        "thermalUtilsNetlink.cpp",
+        "thermalMonitorNetlink.cpp",
+    ],
+    // <linux/thermal.h> (thermal genl) comes from bionic's uapi headers.
+    header_libs: [
+        "liblog_headers",
+        "libcutils_headers",
+    ],
+    cflags: [
+        "-Wno-unused-parameter",
+        "-Wno-unused-variable",
+        "-DENABLE_THERMAL_NETLINK",
+        "-fexceptions",
+    ],
+}
