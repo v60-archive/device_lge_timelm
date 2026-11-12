@@ -453,6 +453,9 @@
          Operating volatage for bluetooth controller. 0 by default
     -->
     <integer name="config_bluetooth_operating_voltage_mv">3300</integer>
+    <integer name="config_bluetooth_idle_cur_ma">1</integer>
+    <integer name="config_bluetooth_rx_cur_ma">8</integer>
+    <integer name="config_bluetooth_tx_cur_ma">11</integer>
 
     <!-- Boolean indicating if restoring network selection should be skipped -->
     <!-- The restoring is handled by modem if it is true-->
@@ -495,6 +498,13 @@
          devices where the display has been tuned to be power efficient in DOZE and/or DOZE_SUSPEND
          states. -->
     <bool name="config_dozeAlwaysOnDisplayAvailable">true</bool>
+    <bool name="config_dozeAlwaysOnEnabled">false</bool>
+
+    <!-- List of regexes that define which interface is a wifi interface for tethering. -->
+    <string-array translatable="false" name="config_tether_wifi_regexs">
+        <item>"softap0"</item>
+        <item>"wigig0"</item>
+    </string-array>
 
     <!-- Power Management: Specifies whether to decouple the auto-suspend state of the
          device from the display on/off state.
