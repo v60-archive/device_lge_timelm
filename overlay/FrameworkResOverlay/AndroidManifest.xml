@@ -7,5 +7,5 @@
           package="com.android.frameworks.overlay.timelm">
     <overlay android:targetPackage="android"
              android:isStatic="true"
-             android:priority="1" />
+             android:priority="500" />
 </manifest>
