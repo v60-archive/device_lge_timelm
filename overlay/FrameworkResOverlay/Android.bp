@@ -6,4 +6,8 @@
 runtime_resource_overlay {
     name: "FrameworksResOverlay",
     vendor: true,
+    overrides: [
+        "FrameworksResTarget",
+        "FrameworksResTarget_kona",
+    ],
 }
