@@ -1321,6 +1321,7 @@ system_ext/framework/lgdataservice-manager.jar
 system_ext/framework/lgsvcitems.jar
 system_ext/priv-app/Ims6/Ims6.apk
 system_ext/priv-app/lgdataservice/lgdataservice.apk
+system/priv-app/LgeResourcesPort/LgeResourcesPort.apk
 vendor/bin/ims_rtp_daemon
 vendor/bin/imsdatadaemon
 vendor/bin/imsqmidaemon
