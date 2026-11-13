@@ -365,6 +365,13 @@ on property:sys.boot_completed=1
     swapon_all /vendor/etc/fstab.timelm
     # Let the camera daemon use every core (480 fps HFR recording needs it)
     write /dev/cpuset/camera-daemon/cpus 0-7
+    # 5.15 qcom-dcvs starts the DDR/LLCC/L3 slow paths with boost_freq =
+    # hw max for boot and expects the vendor to release it after boot.
+    # Without this DDR/LLCC/L3 stay at max forever.  0 -> clamped to hw_min_freq.
+    write /sys/devices/system/cpu/bus_dcvs/DDR/boost_freq 0
+    write /sys/devices/system/cpu/bus_dcvs/LLCC/boost_freq 0
+    write /sys/devices/system/cpu/bus_dcvs/L3/boost_freq 0
+    write /sys/devices/system/cpu/bus_dcvs/DDRQOS/boost_freq 0
 
 # LGE gbmd
 service vendor.gbmd /vendor/bin/gbmd
