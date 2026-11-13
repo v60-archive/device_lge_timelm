@@ -317,23 +317,5 @@ PRODUCT_PACKAGES_REMOVE += \
     FrameworksResTarget \
     FrameworksResTarget_kona
 
-# Property overrides for keys also set by QCOM common
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.sf.color_mode=0 \
-    persist.vendor.audio.ambisonic.auto.profile=true \
-    persist.vendor.audio.ambisonic.capture=true \
-    persist.vendor.audio.apptype.multirec.enabled=true \
-    persist.vendor.audio.voicecall.speaker.stereo=false \
-    ro.vendor.audio.sdk.fluencetype=nxp \
-    vendor.audio.feature.hifi_audio.enable=true \
-    vendor.audio.hal.output.suspend.supported=false \
-    vendor.display.disable_hw_recovery_dump=1 \
-    vendor.display.disable_idle_time_hdr=0 \
-    vendor.display.disable_idle_time_video=0 \
-    vendor.display.enable_async_powermode=0 \
-    vendor.display.use_smooth_motion=0 \
-    vendor.usb.qdss.inst.name=qdss \
-    vendor.voice.path.for.pcm.voip=false
-
 
 

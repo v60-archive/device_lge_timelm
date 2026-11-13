@@ -90,7 +90,37 @@ void init_target_properties()
     property_override("ro.product.vendor.model", model);
 }
 
+void init_override_properties() {
+    // Override QCOM common properties without colliding in vendor/build.prop
+    static const struct {
+        const char* key;
+        const char* value;
+    } kOverrides[] = {
+        {"aaudio.mmap_policy", "1"},
+        {"aaudio.mmap_exclusive_policy", "1"},
+        {"persist.sys.sf.color_mode", "0"},
+        {"persist.vendor.audio.ambisonic.auto.profile", "true"},
+        {"persist.vendor.audio.ambisonic.capture", "true"},
+        {"persist.vendor.audio.apptype.multirec.enabled", "true"},
+        {"persist.vendor.audio.voicecall.speaker.stereo", "false"},
+        {"ro.vendor.audio.sdk.fluencetype", "nxp"},
+        {"vendor.audio.feature.hifi_audio.enable", "true"},
+        {"vendor.audio.hal.output.suspend.supported", "false"},
+        {"vendor.display.disable_hw_recovery_dump", "1"},
+        {"vendor.display.disable_idle_time_hdr", "0"},
+        {"vendor.display.disable_idle_time_video", "0"},
+        {"vendor.display.enable_async_powermode", "0"},
+        {"vendor.display.use_smooth_motion", "0"},
+        {"vendor.usb.qdss.inst.name", "qdss"},
+        {"vendor.voice.path.for.pcm.voip", "false"},
+    };
+    for (const auto& entry : kOverrides) {
+        property_override(entry.key, entry.value);
+    }
+}
+
 void vendor_load_properties() {
     LOG(INFO) << "Loading vendor specific properties";
     init_target_properties();
+    init_override_properties();
 }
