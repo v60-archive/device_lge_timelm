@@ -44,6 +44,11 @@ on init
 on early-fs
     start vold
 
+on early-boot
+    # 5.15 SSR: restart a crashed ADSP/SLPI instead of panicking the AP
+    write /sys/devices/platform/soc/17300000.remoteproc-adsp/remoteproc/remoteproc0/recovery enabled
+    write /sys/devices/platform/soc/5c00000.remoteproc-slpi/remoteproc/remoteproc2/recovery enabled
+
 on fs
     start hwservicemanager
     mkdir /mnt/vendor/spunvm 0660 system system
