@@ -354,6 +354,8 @@ on boot
 on property:vendor.lge.nfc_vendor=sony
     stop vendor.nfc_hal_service
     exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules cxd22xx
+    chown nfc nfc /dev/cxd22xx-i2c
+    chmod 0660 /dev/cxd22xx-i2c
     start vendor.nfc_hal_service-cxd22xx
 
 on property:ro.vendor.lge.minios.bootstart=1
