@@ -6,4 +6,5 @@
 runtime_resource_overlay {
     name: "CarrierConfigOverlay",
     vendor: true,
+    overrides: ["CarrierConfigResCommon_Sys"],
 }

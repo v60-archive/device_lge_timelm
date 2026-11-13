@@ -4,6 +4,6 @@
 	android:versionName="1.0">
 	<overlay android:targetPackage="com.android.phone"
 		android:isStatic="true"
-		android:priority="100"
+		android:priority="500"
 		/>
 </manifest>
