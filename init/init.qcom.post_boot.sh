@@ -274,56 +274,56 @@ case "$target" in
 	# Disable Core control on silver
 	echo 0 > /sys/devices/system/cpu/cpu0/core_ctl/enable
 
-	# Setting b.L scheduler parameters
-	echo 95 95 > /proc/sys/kernel/sched_upmigrate
-	echo 85 85 > /proc/sys/kernel/sched_downmigrate
-	echo 100 > /proc/sys/kernel/sched_group_upmigrate
-	echo 85 > /proc/sys/kernel/sched_group_downmigrate
-	echo 1 > /proc/sys/kernel/sched_walt_rotate_big_tasks
-	echo 400000000 > /proc/sys/kernel/sched_coloc_downmigrate_ns
+	# Setting b.L scheduler parameters (5.15 WALT: /proc/sys/walt)
+	echo 95 95 > /proc/sys/walt/sched_upmigrate
+	echo 85 85 > /proc/sys/walt/sched_downmigrate
+	echo 100 > /proc/sys/walt/sched_group_upmigrate
+	echo 85 > /proc/sys/walt/sched_group_downmigrate
+	echo 1 > /proc/sys/walt/sched_walt_rotate_big_tasks
+	echo 400000000 > /proc/sys/walt/sched_coloc_downmigrate_ns
 
 	# cpuset parameters
 	echo 0-3 > /dev/cpuset/background/cpus
 	echo 0-3 > /dev/cpuset/system-background/cpus
 
-	# Turn off scheduler boost at the end
-	echo 0 > /proc/sys/kernel/sched_boost
+	# Turn off scheduler boost at the end (sched-walt.ko sets
+	# FULL_THROTTLE_BOOST at init and expects this release)
+	echo 0 > /proc/sys/walt/sched_boost
 
 	# configure governor settings for silver cluster
-	echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
-	echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/down_rate_limit_us
-	echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/up_rate_limit_us
+	echo "walt" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+	echo 0 > /sys/devices/system/cpu/cpufreq/policy0/walt/down_rate_limit_us
+	echo 0 > /sys/devices/system/cpu/cpufreq/policy0/walt/up_rate_limit_us
         if [ $rev == "2.0" ] || [ $rev == "2.1" ]; then
-		echo 1248000 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq
+		echo 1248000 > /sys/devices/system/cpu/cpufreq/policy0/walt/hispeed_freq
 	else
-		echo 1228800 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq
+		echo 1228800 > /sys/devices/system/cpu/cpufreq/policy0/walt/hispeed_freq
 	fi
 	echo 691200 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
-	echo 1 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/pl
+	echo 1 > /sys/devices/system/cpu/cpufreq/policy0/walt/pl
 
-	# configure input boost settings
-	echo "0:1785600 4:1056000 7:1056000" > /sys/devices/system/cpu/cpu_boost/input_boost_freq
-	echo "0:1785600 4:940800 7:940800" > /sys/devices/system/cpu/cpu_boost/sub_boost_freq
-	echo 80 > /sys/devices/system/cpu/cpu_boost/input_boost_ms
+	# configure input boost settings (5.15 WALT: one value per CPU)
+	echo "1785600 1785600 1785600 1785600 1056000 1056000 1056000 1056000" > /proc/sys/walt/input_boost/input_boost_freq
+	echo 80 > /proc/sys/walt/input_boost/input_boost_ms
 
 
 	# configure governor settings for gold cluster
-	echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy4/scaling_governor
-	echo 0 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/down_rate_limit_us
-	echo 0 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/up_rate_limit_us
-	echo 1574400 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/hispeed_freq
-	echo 1 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/pl
+	echo "walt" > /sys/devices/system/cpu/cpufreq/policy4/scaling_governor
+	echo 0 > /sys/devices/system/cpu/cpufreq/policy4/walt/down_rate_limit_us
+	echo 0 > /sys/devices/system/cpu/cpufreq/policy4/walt/up_rate_limit_us
+	echo 1574400 > /sys/devices/system/cpu/cpufreq/policy4/walt/hispeed_freq
+	echo 1 > /sys/devices/system/cpu/cpufreq/policy4/walt/pl
 
 	# configure governor settings for gold+ cluster
-	echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy7/scaling_governor
-	echo 0 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/down_rate_limit_us
-	echo 0 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/up_rate_limit_us
+	echo "walt" > /sys/devices/system/cpu/cpufreq/policy7/scaling_governor
+	echo 0 > /sys/devices/system/cpu/cpufreq/policy7/walt/down_rate_limit_us
+	echo 0 > /sys/devices/system/cpu/cpufreq/policy7/walt/up_rate_limit_us
         if [ $rev == "2.0" ] || [ $rev == "2.1" ]; then
-		echo 1632000 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_freq
+		echo 1632000 > /sys/devices/system/cpu/cpufreq/policy7/walt/hispeed_freq
 	else
-		echo 1612800 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_freq
+		echo 1612800 > /sys/devices/system/cpu/cpufreq/policy7/walt/hispeed_freq
 	fi
-	echo 1 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/pl
+	echo 1 > /sys/devices/system/cpu/cpufreq/policy7/walt/pl
 
 	# Enable bus-dcvs
 	for device in /sys/devices/platform/soc
