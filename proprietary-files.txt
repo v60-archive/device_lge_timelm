@@ -86,7 +86,7 @@ vendor/lib64/hw/com.dsi.ant@1.0-impl.so
 # Audio
 # system_ext/etc/permissions/audiosphere.xml
 # system_ext/framework/audiosphere.jar
-#vendor/lib/hw/audio.primary.kona.so
+vendor/lib/hw/audio.primary.kona.so
 vendor/lib/soundfx/libasphere.so
 vendor/lib/soundfx/liblgeffectwrapper.so
 vendor/lib/soundfx/libqcbassboost.so
