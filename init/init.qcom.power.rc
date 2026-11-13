@@ -106,8 +106,8 @@ on init
     write /sys/block/sda/queue/iosched/slice_idle 0
     write /sys/block/sda/queue/nr_requests 256
 
-    # Disable powersaving
-    write /sys/module/lpm_levels/parameters/sleep_disabled 1
+    # Disable powersaving (qcom_lpm; init.qcom.post_boot.sh re-enables it)
+    write /sys/devices/system/cpu/qcom_lpm/parameters/sleep_disabled 1
 
     # bring back all cores
     write /sys/devices/system/cpu/cpu0/online 1
