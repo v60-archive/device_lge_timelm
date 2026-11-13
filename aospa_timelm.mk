@@ -32,10 +32,12 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildDesc="timelm-user 13 TKQ1.220829.002 2318902104908 release-keys" \
     BuildFingerprint=lge/timelm/timelm:13/TKQ1.220829.002/2318902104908:user/release-keys
 
-# Overlays: Drop generic kona FrameworksResTarget overlay to prevent HIDL biometric conflict
+# Overlays: Drop generic kona FrameworksResTarget and AOSPA CarrierConfig/Telephony overlays
 PRODUCT_PACKAGES_REMOVE += \
+    CarrierConfigResCommon_Sys \
     FrameworksResTarget \
-    FrameworksResTarget_kona
+    FrameworksResTarget_kona \
+    TelephonyResCommon_Sys
 
 endif
 
