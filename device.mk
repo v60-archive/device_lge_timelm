@@ -371,7 +371,7 @@ PRODUCT_BOOT_JARS += \
 
 # Thermal
 PRODUCT_PACKAGES += \
-    android.hardware.thermal-service.qti
+    android.hardware.thermal-service.qti.timelm
 
 # Touch
 PRODUCT_PACKAGES += \
