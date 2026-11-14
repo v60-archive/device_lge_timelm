@@ -105,6 +105,10 @@ on post-fs-data
     write /sys/devices/platform/soc/b0000000.qcom,cnss-qca6390/fs_ready 1
 
 on early-boot
+    # Restart a crashed ADSP/SLPI instead of panicking the AP. msm-5.15
+    # remoteproc starts with recovery disabled; the SLPI crashes once at boot.
+    write /sys/devices/platform/soc/17300000.remoteproc-adsp/remoteproc/remoteproc0/recovery enabled
+    write /sys/devices/platform/soc/5c00000.remoteproc-slpi/remoteproc/remoteproc2/recovery enabled
     start vendor.sensors
 
 on boot
