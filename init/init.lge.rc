@@ -409,9 +409,8 @@ on property:vendor.post_boot.parsed=1
     write /sys/devices/system/cpu/cpufreq/policy7/walt/hispeed_freq 1632000
     write /sys/devices/system/cpu/cpufreq/policy7/walt/pl 1
 
-    # input boost (5.15 WALT: one value per CPU)
+    # input boost (5.15 WALT: one value per CPU; AOSPA's perf rc sets input_boost_ms)
     write /proc/sys/walt/input_boost/input_boost_freq "1785600 1785600 1785600 1785600 1056000 1056000 1056000 1056000"
-    write /proc/sys/walt/input_boost/input_boost_ms 80
 
     # Enable CPU/cluster low-power modes (qcom_lpm boots with them off)
     write /sys/devices/system/cpu/qcom_lpm/parameters/sleep_disabled N
