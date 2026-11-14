@@ -359,7 +359,8 @@ $(call inherit-product, vendor/lge/timelm/timelm-vendor.mk)
 # Overlays: Drop generic kona FrameworksResTarget overlay to prevent HIDL biometric conflict
 PRODUCT_PACKAGES_REMOVE += \
     FrameworksResTarget \
-    FrameworksResTarget_kona
+    FrameworksResTarget_kona \
+    loc_sys_service
 
 
 
