@@ -104,6 +104,7 @@ BOARD_MKBOOTIMG_ARGS += --base $(BOARD_KERNEL_BASE) --pagesize $(BOARD_KERNEL_PA
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := \
     sched-walt.ko \
     qcom_lpm.ko \
+    msm_performance.ko \
     msm_kgsl.ko \
     audio_q6_pdr.ko \
     audio_q6_notifier.ko \
