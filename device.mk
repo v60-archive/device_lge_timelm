@@ -12,6 +12,10 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 # Shipping API Level
 PRODUCT_SHIPPING_API_LEVEL := 29
 
+# Prebuilt kernel
+PRODUCT_COPY_FILES += \
+    kernel/lge/sm8250/Image.gz:kernel
+
 # AAPT
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := 560dpi

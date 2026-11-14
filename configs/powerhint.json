@@ -166,7 +166,7 @@
     },
     {
       "Name": "CPUBWHystTriggerCount",
-      "Path": "/sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/bw_hwmon/hyst_trigger_count",
+      "Path": "/sys/devices/system/cpu/bus_dcvs/LLCC/90b6400.qcom,bwmon-llcc/hyst_trigger_count",
       "Values": [
         "0",
         "3"
@@ -175,90 +175,90 @@
     },
     {
       "Name": "CPUBWHistMemory",
-      "Path": "/sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/bw_hwmon/hist_memory",
+      "Path": "/sys/devices/system/cpu/bus_dcvs/LLCC/90b6400.qcom,bwmon-llcc/hist_memory",
       "Values": [
         "0",
-        "20"
+        "0"
       ],
       "ResetOnInit": true
     },
     {
       "Name": "CPUBWHystLength",
-      "Path": "/sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/bw_hwmon/hyst_length",
+      "Path": "/sys/devices/system/cpu/bus_dcvs/LLCC/90b6400.qcom,bwmon-llcc/hyst_length",
       "Values": [
         "0",
-        "10"
+        "0"
       ],
       "ResetOnInit": true
     },
     {
       "Name": "CPUBWSampleMs",
-      "Path": "/sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/bw_hwmon/sample_ms",
+      "Path": "/sys/devices/system/cpu/bus_dcvs/LLCC/90b6400.qcom,bwmon-llcc/sample_ms",
       "Values": [
         "10",
-        "4"
+        "50"
       ],
       "ResetOnInit": true
     },
     {
       "Name": "CPUBWIOPercent",
-      "Path": "/sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/bw_hwmon/io_percent",
+      "Path": "/sys/devices/system/cpu/bus_dcvs/LLCC/90b6400.qcom,bwmon-llcc/io_percent",
       "Values": [
         "80",
-        "34"
+        "16"
       ],
       "ResetOnInit": true
     },
     {
       "Name": "CPUBWMinFreq",
-      "Path": "/sys/class/devfreq/soc:qcom,cpu-cpu-llcc-bw/min_freq",
+      "Path": "/sys/devices/system/cpu/bus_dcvs/LLCC/90b6400.qcom,bwmon-llcc/min_freq",
       "Values": [
-        "14236",
-        "9155",
-        "2288"
+        "933000",
+        "600000",
+        "150000"
       ],
       "ResetOnInit": true
     },
     {
       "Name": "LLCCBWMinFreq",
-      "Path": "/sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/min_freq",
+      "Path": "/sys/devices/system/cpu/bus_dcvs/DDR/9091000.qcom,bwmon-ddr/min_freq",
       "Values": [
-        "6881",
-        "2597",
-        "762"
+        "1804000",
+        "681000",
+        "200000"
       ],
       "ResetOnInit": true
     },
     {
       "Name": "LLCCBWSampleMs",
-      "Path": "/sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/bw_hwmon/sample_ms",
+      "Path": "/sys/devices/system/cpu/bus_dcvs/DDR/9091000.qcom,bwmon-ddr/sample_ms",
       "Values": [
         "10",
-        "4"
+        "50"
       ],
       "ResetOnInit": true
     },
     {
       "Name": "LLCCBWHystLength",
-      "Path": "/sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/bw_hwmon/hyst_length",
+      "Path": "/sys/devices/system/cpu/bus_dcvs/DDR/9091000.qcom,bwmon-ddr/hyst_length",
       "Values": [
         "0",
-        "10"
+        "0"
       ],
       "ResetOnInit": true
     },
     {
       "Name": "L3LittleClusterMinFreq",
-      "Path": "/sys/class/devfreq/18590000.qcom,devfreq-l3:qcom,cpu0-cpu-l3-lat/min_freq",
+      "Path": "/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:silver/min_freq",
       "Values": [
-        "1612800000",
-        "300000000"
+        "1612800",
+        "300000"
       ],
       "ResetOnInit": true
     },
     {
       "Name": "LLCCBWHystTriggerCount",
-      "Path": "/sys/class/devfreq/soc:qcom,cpu-llcc-ddr-bw/bw_hwmon/hyst_trigger_count",
+      "Path": "/sys/devices/system/cpu/bus_dcvs/DDR/9091000.qcom,bwmon-ddr/hyst_trigger_count",
       "Values": [
         "0",
         "3"
@@ -267,19 +267,19 @@
     },
     {
       "Name": "L3BigClusterMinFreq",
-      "Path": "/sys/class/devfreq/18590000.qcom,devfreq-l3:qcom,cpu4-cpu-l3-lat/min_freq",
+      "Path": "/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:gold/min_freq",
       "Values": [
-        "1612800000",
-        "300000000"
+        "1612800",
+        "300000"
       ],
       "ResetOnInit": true
     },
     {
       "Name": "L3BigPlusClusterMinFreq",
-      "Path": "/sys/class/devfreq/18590000.qcom,devfreq-l3:qcom,cpu7-cpu-l3-lat/min_freq",
+      "Path": "/sys/devices/system/cpu/bus_dcvs/L3/soc:qcom,memlat:l3:prime/min_freq",
       "Values": [
-        "1612800000",
-        "300000000"
+        "1612800",
+        "300000"
       ],
       "ResetOnInit": true
     },
@@ -406,13 +406,13 @@
       "PowerHint": "INTERACTION",
       "Node": "CPUBWMinFreq",
       "Duration": 0,
-      "Value": "9155"
+      "Value": "600000"
     },
     {
       "PowerHint": "INTERACTION",
       "Node": "LLCCBWMinFreq",
       "Duration": 0,
-      "Value": "2597"
+      "Value": "681000"
     },
     {
       "PowerHint": "LAUNCH",
@@ -472,7 +472,7 @@
       "PowerHint": "LAUNCH",
       "Node": "CPUBWMinFreq",
       "Duration": 5000,
-      "Value": "14236"
+      "Value": "933000"
     },
     {
       "PowerHint": "LAUNCH",
@@ -496,25 +496,25 @@
       "PowerHint": "LAUNCH",
       "Node": "LLCCBWMinFreq",
       "Duration": 5000,
-      "Value": "6881"
+      "Value": "1804000"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "L3LittleClusterMinFreq",
       "Duration": 5000,
-      "Value": "1612800000"
+      "Value": "1612800"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "L3BigClusterMinFreq",
       "Duration": 5000,
-      "Value": "1612800000"
+      "Value": "1612800"
     },
     {
       "PowerHint": "LAUNCH",
       "Node": "L3BigPlusClusterMinFreq",
       "Duration": 5000,
-      "Value": "1612800000"
+      "Value": "1612800"
     },
     {
       "PowerHint": "CAMERA_LAUNCH",
