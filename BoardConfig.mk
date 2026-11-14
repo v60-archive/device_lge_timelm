@@ -196,6 +196,11 @@ BOARD_INCLUDE_RECOVERY_DTBO := true
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_F2FS := true
 
+# Recovery - UFS: msm-5.15 has the upstream UFS BSG (ufs-bsg0, scsi/scsi_bsg_ufs.h)
+SOONG_CONFIG_NAMESPACES += ufsbsg
+SOONG_CONFIG_ufsbsg += ufsframework
+SOONG_CONFIG_ufsbsg_ufsframework := bsg
+
 # RIL
 ENABLE_VENDOR_RIL_SERVICE := true
 
