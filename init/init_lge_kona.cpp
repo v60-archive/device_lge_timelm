@@ -112,6 +112,7 @@ void init_override_properties() {
         {"vendor.display.enable_async_powermode", "0"},
         {"vendor.display.use_smooth_motion", "0"},
         {"vendor.usb.qdss.inst.name", "qdss"},
+        {"vendor.usb.use_ffs_mtp", "1"},
         {"vendor.voice.path.for.pcm.voip", "false"},
     };
     for (const auto& entry : kOverrides) {
