@@ -204,6 +204,11 @@ SOONG_CONFIG_ufsbsg_ufsframework := bsg
 # RIL
 ENABLE_VENDOR_RIL_SERVICE := true
 
+# RIL - rmnet: msm-5.15 has no rmnet_data uapi; datarmnet (rmnet_core) is driven
+# over rtnetlink. qti-telephony.mk keys this on TARGET_KERNEL_VERSION (4.19 for
+# kona, which also selects the HALs that match our 4.19-ABI vendor drivers).
+SOONG_CONFIG_rmnetctl_old_rmnet_data := false
+
 # SEPolicy
 include device/qcom/sepolicy_vndr/SEPolicy.mk
 include hardware/lge/sepolicy/SEPolicy.mk
