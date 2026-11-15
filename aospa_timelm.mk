@@ -37,7 +37,8 @@ PRODUCT_PACKAGES_REMOVE += \
     CarrierConfigResCommon_Sys \
     FrameworksResTarget \
     FrameworksResTarget_kona \
-    TelephonyResCommon_Sys
+    TelephonyResCommon_Sys \
+    loc_sys_service
 
 endif
 
