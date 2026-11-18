@@ -76,7 +76,6 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
 BOARD_BOOT_HEADER_VERSION := 2
 BOARD_KERNEL_CMDLINE := \
     androidboot.memcg=1 \
-    lpm_levels.sleep_disabled=1 \
     msm_rtb.filter=0x237 \
     service_locator.enable=1 \
     swiotlb=2048 \
@@ -94,49 +93,67 @@ BOARD_RAMDISK_OFFSET := 0x01000000
 BOARD_DTB_OFFSET := 0x01f00000
 BOARD_KERNEL_IMAGE_NAME := Image.gz
 TARGET_KERNEL_CLANG_VERSION := r563880c
-TARGET_KERNEL_CONFIG := vendor/kona-perf_defconfig vendor/timelm.config
+TARGET_KERNEL_CONFIG := timelm_defconfig
 TARGET_KERNEL_SOURCE := kernel/lge/sm8250
 BOARD_KERNEL_SEPARATED_DTBO := true
+# Only the base DTB goes into boot.img; the board revs come from dtbo.img
+TARGET_DTB_LIST_WILDCARD := vendor/qcom/kona-timelm
 BOARD_MKBOOTIMG_ARGS += --base $(BOARD_KERNEL_BASE) --pagesize $(BOARD_KERNEL_PAGESIZE) --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET) --kernel_offset $(BOARD_KERNEL_OFFSET) --dtb_offset $(BOARD_DTB_OFFSET) --header_version $(BOARD_BOOT_HEADER_VERSION)
 
-# Kernel modules - Audio
-TARGET_MODULE_ALIASES += \
-    adsp_loader_dlkm.ko:audio_adsp_loader.ko \
-    apr_dlkm.ko:audio_apr.ko \
-    bolero_cdc_dlkm.ko:audio_bolero_cdc.ko \
-    es9218_dlkm.ko:audio_es9218.ko \
-    hdmi_dlkm.ko:audio_hdmi.ko \
-    machine_dlkm.ko:audio_machine_kona.ko \
-    mbhc_dlkm.ko:audio_mbhc.ko \
-    native_dlkm.ko:audio_native.ko \
-    pinctrl_lpi_dlkm.ko:audio_pinctrl_lpi.ko \
-    pinctrl_wcd_dlkm.ko:audio_pinctrl_wcd.ko \
-    platform_dlkm.ko:audio_platform.ko \
-    q6_dlkm.ko:audio_q6.ko \
-    q6_notifier_dlkm.ko:audio_q6_notifier.ko \
-    q6_pdr_dlkm.ko:audio_q6_pdr.ko \
-    rx_macro_dlkm.ko:audio_rx_macro.ko \
-    snd_event_dlkm.ko:audio_snd_event.ko \
-    stub_dlkm.ko:audio_stub.ko \
-    swr_ctrl_dlkm.ko:audio_swr_ctrl.ko \
-    swr_dlkm.ko:audio_swr.ko \
-    tfa9878_dlkm.ko:audio_tfa9878.ko \
-    tx_macro_dlkm.ko:audio_tx_macro.ko \
-    usf_dlkm.ko:audio_usf.ko \
-    va_macro_dlkm.ko:audio_va_macro.ko \
-    wcd937x_dlkm.ko:audio_wcd937x.ko \
-    wcd937x_slave_dlkm.ko:audio_wcd937x_slave.ko \
-    wcd938x_dlkm.ko:audio_wcd938x.ko \
-    wcd938x_slave_dlkm.ko:audio_wcd938x_slave.ko \
-    wcd9xxx_dlkm.ko:audio_wcd9xxx.ko \
-    wcd_core_dlkm.ko:audio_wcd_core.ko \
-    wsa881x_dlkm.ko:audio_wsa881x.ko \
-    wsa883x_dlkm.ko:audio_wsa883x.ko \
-    wsa_macro_dlkm.ko:audio_wsa_macro.ko
-
-# Kernel modules - WLAN
-TARGET_MODULE_ALIASES += \
-    wlan.ko:qca_cld3_qca6390.ko
+# Kernel modules
+# No vendor_boot: the vendor drivers ride in the boot ramdisk and first stage
+# init loads them in this order.
+BOOT_KERNEL_MODULES := \
+    sched-walt.ko \
+    qcom_lpm.ko \
+    msm_performance.ko \
+    msm_kgsl.ko \
+    q6_pdr_dlkm.ko \
+    q6_notifier_dlkm.ko \
+    snd_event_dlkm.ko \
+    apr_dlkm.ko \
+    adsp_loader_dlkm.ko \
+    q6_dlkm.ko \
+    bolero_cdc_dlkm.ko \
+    es9218_dlkm.ko \
+    wcd9xxx_dlkm.ko \
+    mbhc_dlkm.ko \
+    wcd_core_dlkm.ko \
+    swr_dlkm.ko \
+    wcd938x_dlkm.ko \
+    wsa881x_dlkm.ko \
+    wsa883x_dlkm.ko \
+    machine_dlkm.ko \
+    pinctrl_lpi_dlkm.ko \
+    pinctrl_wcd_dlkm.ko \
+    platform_dlkm.ko \
+    swr_ctrl_dlkm.ko \
+    rx_macro_dlkm.ko \
+    stub_dlkm.ko \
+    tfa9878_dlkm.ko \
+    tx_macro_dlkm.ko \
+    va_macro_dlkm.ko \
+    wcd938x_slave_dlkm.ko \
+    wsa_macro_dlkm.ko \
+    cnss_utils.ko \
+    btpower.ko \
+    wlan_firmware_service.ko \
+    cnss_plat_ipc_qmi_svc.ko \
+    cnss_prealloc.ko \
+    cnss_nl.ko \
+    cnss2.ko \
+    wlan.ko \
+    rmnet_ctl.ko \
+    rmnet_core.ko \
+    camera.ko \
+    et713.ko \
+    cxd22xx.ko \
+    msm-vidc.ko \
+    msm-cvp.ko \
+    qce50_dlkm.ko \
+    qcedev-mod_dlkm.ko \
+    smcinvoke_dlkm.ko
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(BOOT_KERNEL_MODULES)
 
 # Partitions
 BOARD_USES_METADATA_PARTITION := true
