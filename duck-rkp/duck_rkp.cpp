@@ -143,7 +143,8 @@ void vendorRequest(int fd, uint32_t backend, const std::vector<uint8_t>& payload
     alignas(16) std::array<uint8_t, 0x40> object{};
     construct(object.data(), 1);
     auto request = encodeVendorRequest(backend, payload);
-    std::vector<uint8_t> response(kBufferSize);
+    // libQSEEComAPI puts the response after the 64-byte aligned request in the shared buffer.
+    std::vector<uint8_t> response(kBufferSize - ((request.size() + 63) & ~size_t{63}));
     int32_t sentinel = INT32_MIN;
     memcpy(response.data(), &sentinel, 4);
     int status = sendCommand(object.data(), request.data(), request.size(),
@@ -158,7 +159,7 @@ void vendorRequest(int fd, uint32_t backend, const std::vector<uint8_t>& payload
     result = static_cast<int32_t>(le32toh(static_cast<uint32_t>(result)));
     size = le32toh(size);
     if (result != 0) return reply(fd, REJECTED, result);
-    if (size == 0 || size > kBufferSize - 8) return reply(fd, TRANSPORT, 0);
+    if (size == 0 || size > response.size() - 8) return reply(fd, TRANSPORT, 0);
     reply(fd, OK, 0, {response.begin() + 8, response.begin() + 8 + size});
 }
 

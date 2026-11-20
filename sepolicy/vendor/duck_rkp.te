@@ -22,6 +22,8 @@ allow duck_rkp_worker duck_rkp:unix_stream_socket { read write getattr getopt se
 # /dev/smcinvoke and /dev/qseecom are labeled tee_device
 allow duck_rkp_worker tee_device:chr_file rw_file_perms;
 r_dir_file(duck_rkp_worker, vendor_file)
+# kona libQSEEComAPI allocates the shared buffer from /dev/ion
+allow duck_rkp_worker ion_device:chr_file r_file_perms;
 
 # libQSEEComAPI waits for vendor.sys.listeners.registered before talking to the TEE
 get_prop(duck_rkp_worker, vendor_tee_listener_prop)
