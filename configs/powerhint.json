@@ -174,24 +174,6 @@
       "ResetOnInit": true
     },
     {
-      "Name": "CPUBWHistMemory",
-      "Path": "/sys/devices/system/cpu/bus_dcvs/LLCC/90b6400.qcom,bwmon-llcc/hist_memory",
-      "Values": [
-        "0",
-        "0"
-      ],
-      "ResetOnInit": true
-    },
-    {
-      "Name": "CPUBWHystLength",
-      "Path": "/sys/devices/system/cpu/bus_dcvs/LLCC/90b6400.qcom,bwmon-llcc/hyst_length",
-      "Values": [
-        "0",
-        "0"
-      ],
-      "ResetOnInit": true
-    },
-    {
       "Name": "CPUBWSampleMs",
       "Path": "/sys/devices/system/cpu/bus_dcvs/LLCC/90b6400.qcom,bwmon-llcc/sample_ms",
       "Values": [
@@ -235,15 +217,6 @@
       "Values": [
         "10",
         "50"
-      ],
-      "ResetOnInit": true
-    },
-    {
-      "Name": "LLCCBWHystLength",
-      "Path": "/sys/devices/system/cpu/bus_dcvs/DDR/9091000.qcom,bwmon-ddr/hyst_length",
-      "Values": [
-        "0",
-        "0"
       ],
       "ResetOnInit": true
     },
@@ -392,18 +365,6 @@
     },
     {
       "PowerHint": "INTERACTION",
-      "Node": "CPUBWHystLength",
-      "Duration": 0,
-      "Value": "0"
-    },
-    {
-      "PowerHint": "INTERACTION",
-      "Node": "CPUBWHistMemory",
-      "Duration": 0,
-      "Value": "0"
-    },
-    {
-      "PowerHint": "INTERACTION",
       "Node": "CPUBWMinFreq",
       "Duration": 0,
       "Value": "600000"
@@ -453,18 +414,6 @@
     {
       "PowerHint": "LAUNCH",
       "Node": "CPUBWHystTriggerCount",
-      "Duration": 5000,
-      "Value": "0"
-    },
-    {
-      "PowerHint": "LAUNCH",
-      "Node": "CPUBWHystLength",
-      "Duration": 5000,
-      "Value": "0"
-    },
-    {
-      "PowerHint": "LAUNCH",
-      "Node": "CPUBWHistMemory",
       "Duration": 5000,
       "Value": "0"
     },
@@ -626,19 +575,7 @@
     },
     {
       "PowerHint": "CAMERA_STREAMING_HIGH",
-      "Node": "CPUBWHystLength",
-      "Duration": 0,
-      "Value": "0"
-    },
-    {
-      "PowerHint": "CAMERA_STREAMING_HIGH",
       "Node": "LLCCBWHystTriggerCount",
-      "Duration": 0,
-      "Value": "0"
-    },
-    {
-      "PowerHint": "CAMERA_STREAMING_HIGH",
-      "Node": "LLCCBWHystLength",
       "Duration": 0,
       "Value": "0"
     },
@@ -680,19 +617,7 @@
     },
     {
       "PowerHint": "CAMERA_STREAMING_LOW",
-      "Node": "CPUBWHystLength",
-      "Duration": 0,
-      "Value": "0"
-    },
-    {
-      "PowerHint": "CAMERA_STREAMING_LOW",
       "Node": "LLCCBWHystTriggerCount",
-      "Duration": 0,
-      "Value": "0"
-    },
-    {
-      "PowerHint": "CAMERA_STREAMING_LOW",
-      "Node": "LLCCBWHystLength",
       "Duration": 0,
       "Value": "0"
     },
