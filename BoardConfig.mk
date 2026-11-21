@@ -105,6 +105,8 @@ BOOT_KERNEL_MODULES := \
     sched-walt.ko \
     qcom_lpm.ko \
     msm_performance.ko \
+    ipa_fmwk.ko \
+    usb_f_gsi.ko \
     msm_kgsl.ko \
     q6_pdr_dlkm.ko \
     q6_notifier_dlkm.ko \
@@ -143,6 +145,11 @@ BOOT_KERNEL_MODULES := \
     wlan.ko \
     rmnet_ctl.ko \
     rmnet_core.ko \
+    gsim.ko \
+    ipam.ko \
+    ipanetm.ko \
+    rndisipam.ko \
+    ipa_clientsm.ko \
     camera.ko \
     et713.ko \
     cxd22xx.ko \
