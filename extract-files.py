@@ -94,6 +94,11 @@ blob_fixups: blob_fixups_user_type = {
     ),
     'vendor/lib64/libdpps.so': blob_fixup()
         .replace_needed('libtinyxml2.so', 'libtinyxml2-v34.so'),
+    'system_ext/lib64/libims.lge.so': blob_fixup()
+        .sig_replace(
+            'E0 03 01 AA E1 03 02 2A E2 03 1F AA E3 03 1F AA 04 20 80 52 D6 E9 19 94 F5 03 00 AA',
+            'E0 03 01 AA E1 03 02 2A E2 03 1F AA E3 03 1F AA 24 20 80 52 D6 E9 19 94 F5 03 00 AA',
+        ),
 }  # fmt: skip
 
 IMS_SHIM_SHARED_LIBS = {
